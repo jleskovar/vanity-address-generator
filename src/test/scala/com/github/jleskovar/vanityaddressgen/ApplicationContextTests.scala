@@ -6,8 +6,8 @@ import org.springframework.boot.test.SpringApplicationConfiguration
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 @RunWith(classOf[SpringJUnit4ClassRunner])
-@SpringApplicationConfiguration(classes = Array(classOf[VanityAddressGeneratorApplication]))
-class VanityAddressGeneratorApplicationTests {
+@SpringApplicationConfiguration(classes = Array(classOf[Application]))
+class ApplicationContextTests {
 
   @Test
   def contextLoads: Unit = {
