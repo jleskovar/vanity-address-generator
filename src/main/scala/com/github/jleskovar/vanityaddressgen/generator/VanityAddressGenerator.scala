@@ -1,24 +1,29 @@
 package com.github.jleskovar.vanityaddressgen.generator
 
+import java.security.SecureRandom
+
 import org.bitcoinj.core.{Address, ECKey, NetworkParameters}
 
 /**
  * Created by james on 6/05/15.
  */
-class VanityAddressGenerator extends AddressGenerator {
+class VanityAddressGenerator(network: NetworkParameters, random: Option[SecureRandom] = None) extends AddressGenerator {
 
   override def generateAddress(prefix: String): (Address, ECKey) = {
-    var flag = true
+    var found = false
     var address: Address = null
     var key: ECKey = null
-    while (flag) {
-      key = new ECKey
-      address = new Address(NetworkParameters.fromID(NetworkParameters.ID_MAINNET),
-        key.getPubKeyHash)
+
+    val entropyProvider = random.getOrElse(new SecureRandom)
+
+    while (!found) {
+      key = new ECKey(entropyProvider)
+      address = new Address(network, key.getPubKeyHash)
       if (address.toString.startsWith(prefix)) {
-        flag = false
+        found = true
       }
     }
+
     (address, key)
   }
 }
