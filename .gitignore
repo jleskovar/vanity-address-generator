@@ -18,6 +18,7 @@ project/plugins/project/
 
 # Intellij Specific
 *.iml
+*.sc
 .idea
 
 # scalastyle output
