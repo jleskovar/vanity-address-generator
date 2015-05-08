@@ -10,22 +10,9 @@ import org.bitcoinj.core.{Address, ECKey, NetworkParameters}
 class VanityAddressGenerator(val network: NetworkParameters, val random: SecureRandom = new SecureRandom())
   extends AddressGenerator {
 
-  @volatile var counter: Long = _
-
-  override def generateAddress(prefix: String): (Address, ECKey) = {
-    var found = false
-    var address: Address = null
-    var key: ECKey = null
-
-    while (!found) {
-      key = new ECKey(random)
-      address = new Address(network, key.getPubKeyHash)
-      if (address.toString.startsWith(prefix)) {
-        found = true
-      }
-      counter = counter + 1
+  override def generateAddress(prefix: String): Option[(Address, ECKey)] = {
+    ecKeys.find(key => new Address(network, key.getPubKeyHash).toString.startsWith(prefix)).map {
+      case key => (new Address(network, key.getPubKeyHash), key)
     }
-
-    (address, key)
   }
 }

@@ -7,6 +7,8 @@ import org.bitcoinj.core.{ECKey, Address}
  */
 trait AddressGenerator {
 
-  def generateAddress(prefix: String): (Address, ECKey)
+  def generateAddress(prefix: String): Option[(Address, ECKey)]
+
+  protected def ecKeys: Iterator[ECKey] = Iterator.continually(new ECKey)
 
 }
