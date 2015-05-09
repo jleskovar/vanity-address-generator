@@ -6,7 +6,7 @@ import org.scalatest.{Matchers, FunSuite}
 /**
  * Created by james on 6/05/15.
  */
-class VanityAddressGeneratorTest extends FunSuite with Matchers {
+class VanityAddressGeneratorTests extends FunSuite with Matchers {
 
   val networkParameters: NetworkParameters = NetworkParameters.fromID(NetworkParameters.ID_MAINNET)
   val addressGenerator = new VanityAddressGenerator(networkParameters)
