@@ -12,7 +12,7 @@ class VanityAddressGeneratorTests extends FunSuite with Matchers {
   val addressGenerator = new VanityAddressGenerator(networkParameters)
 
   test("vanity address generation actually works") {
-    val results = addressGenerator.generateAddress("1Ty")
+    val results = addressGenerator.findAddressWithPrefix("1Ty")
     results shouldBe defined
 
     val (address, key) = results.get
