@@ -7,7 +7,7 @@ import org.bitcoinj.core.{Address, ECKey, NetworkParameters}
 /**
  * Created by james on 6/05/15.
  */
-class VanityAddressGenerator(val network: NetworkParameters, val random: SecureRandom = new SecureRandom())
+class VanityAddressGenerator(network: NetworkParameters, random: SecureRandom = new SecureRandom())
   extends AddressGenerator {
 
   override def generateAddress(prefix: String): Option[(Address, ECKey)] = {
