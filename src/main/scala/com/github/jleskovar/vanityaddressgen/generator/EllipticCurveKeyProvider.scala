@@ -15,6 +15,6 @@ object EllipticCurveKeyProvider {
   }
 
   class MetricTrackingEllipticCurveKeyProvider(meter: Meter) extends ContinuousEllipticCurveKeyProvider {
-    override def keys: Iterator[ECKey] = super.keys.withMetrics(meter)
+    override def keys: Iterator[ECKey] = super.keys.metered(meter)
   }
 }

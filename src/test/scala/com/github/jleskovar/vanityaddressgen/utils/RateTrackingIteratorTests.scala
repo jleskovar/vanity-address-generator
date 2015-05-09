@@ -17,14 +17,14 @@ class RateTrackingIteratorTests extends FunSuite with BeforeAndAfter with Matche
   test("no metrics recorded for empty iterator") {
     val meter: Meter = metrics.meter("mymeter")
     meter.getCount shouldBe 0
-    Iterator.empty.withMetrics(meter).toList
+    Iterator.empty.metered(meter).toList
     meter.getCount shouldBe 0
   }
 
   test("metrics recorded for non-empty iterator") {
     val meter: Meter = metrics.meter("mymeter")
     meter.getCount shouldBe 0
-    (1 to 10).toIterator.withMetrics(meter).toList
+    (1 to 10).toIterator.metered(meter).toList
     meter.getCount shouldBe 10
   }
 

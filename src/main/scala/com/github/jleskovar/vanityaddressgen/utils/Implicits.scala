@@ -7,6 +7,6 @@ import com.codahale.metrics.Meter
  */
 object Implicits {
   implicit class EnrichedIterator[A](val self: Iterator[A]) extends AnyVal {
-    def withMetrics(meter: Meter): Iterator[A] = new RateTrackingIterator[A](self, meter)
+    def metered(meter: Meter): Iterator[A] = new RateTrackingIterator[A](self, meter)
   }
 }
